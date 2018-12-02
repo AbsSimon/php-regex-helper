@@ -109,4 +109,4 @@ echo preg_replace($r, '<a href="mailto:$1">$1</a>', 'My email adress is test.tes
 My email adress is <a href="mailto:test.tester@nasa.gov">test.tester@nasa.gov</a> (http://www.nasa.gov)
 ```
 
-More example will follow soon.
+More examples will follow soon.
