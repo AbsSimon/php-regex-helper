@@ -59,7 +59,7 @@ echo preg_replace($r, '.', 'Germany has 82675000 citizen.');
 Germany has 82.675.000 citizen.
 ```
 
-### Example 3. Add mailto: 
+#### Example 3. Add mailto: 
 
 ```sh
 $r = regex(['mode::case-insensitiv'],
@@ -109,3 +109,4 @@ echo preg_replace($r, '<a href="mailto:$1">$1</a>', 'My email adress is test.tes
 My email adress is <a href="mailto:test.tester@nasa.gov">test.tester@nasa.gov</a> (http://www.nasa.gov)
 ```
 
+More example will follow soon.
