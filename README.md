@@ -1,9 +1,16 @@
-# php-regex-helper
-Some small functions for better understanding
+php-regex-helper
+================
 
+Simple functions for practicing and understanding regular expressions.
+
+Requirements
+------------
+* PHP > 5.3
+
+Usage
+-----
 #### Example 1. Find double words
-
-```sh
+```php
 $r = regex([],
 	Group(
 		oneOrMany(
@@ -11,9 +18,7 @@ $r = regex([],
 		)
 	) 
 	.
-	oneOfTheseCharacters(
-		Whitespace()
-	)
+	oneOfTheseCharacters(Whitespace())
 	.
 	oneOrMany(
 		getGroupContentNr(1)
@@ -21,53 +26,90 @@ $r = regex([],
 );
 
 preg_match($r, 'Paris in the the spring', $m);
-```
-```sh
-{([\w]+)[\s]\1+}
-```
-```sh
-Array
+
+/*
+$r = {([\w]+)[\s]\1+}
+
+$m = Array
 (
     [0] => the the
     [1] => the
 )
+*/
 ```
 
-
-#### Example 2. Thousands Separators 
-
-```sh
+#### Example 2. Search
+```php
 $r = regex([],
-
-	ifLeft(Number())
-	.
-	ifRight(
-		oneOrMany( 
-			Group(Number().Number().Number())
-		)
+	Or_(
+		'-'
 		.
-		ifNotRight(Number())
+		Group(
+			oneOrMany(NonWhitespace()),
+			'exclude' // groupname
+		)
+	,
+		inlineOption(['mode::smallest-selection-for*and+'], 
+			'"'
+			.
+			Group(
+				nullOrMany(Char()), 
+				'literal' 
+			)
+			.
+			'"'
+		)
+	,
+		Group(
+			oneOrMany(NonWhitespace()),
+			'normal'
+		)
 	)
 );
 
-echo preg_replace($r, '.', 'Germany has 82675000 citizen.');
-```
-```sh
-{(?<=\d)(?=(\d\d\d)+(?!\d))}
-```
-```sh
-Germany has 82.675.000 citizen.
+if (preg_match_all($r, 'programming language "PHP 7.2" -perl', $m)) {
+	print_r($m);
+}
+
+/*
+$r = {-(?\S+)|(?U:"(?.*)")|(?\S+)}
+
+$m = Array
+(
+    ...
+    [exclude] => Array
+        (
+            [0] => 
+            [1] => 
+            [2] => 
+            [3] => perl
+        )
+    [literal] => Array
+        (
+            [0] => 
+            [1] => 
+            [2] => PHP 7.2
+            [3] => 
+        )
+    [normal] => Array
+        (
+            [0] => programming
+            [1] => language
+            [2] => 
+            [3] => 
+        )
+    ...
+)
+*/
 ```
 
 #### Example 3. Add mailto: 
-
-```sh
+```php
 $r = regex(['mode::case-insensitiv'],
 
 	wordBoundry()
 	.
 	Group(
-		// Username (do not start with -.)
 		WordChar()
 		.
 		nullOrMany(
@@ -76,8 +118,8 @@ $r = regex(['mode::case-insensitiv'],
 		.
 		escape('@')
 		.
-		oneOrMany(  // hostname (do not start with a dot)
-			oneOfTheseCharacters('-' . StringLower() . Number())// in Hostname ASCI only, so no \w
+		oneOrMany(  // hostnames do not start with a dot...
+			oneOfTheseCharacters('-' . StringLower() . Number())
 		)
 		.
 		nullOrMany( 
@@ -101,12 +143,13 @@ $r = regex(['mode::case-insensitiv'],
 );
 
 echo preg_replace($r, '<a href="mailto:$1">$1</a>', 'My email adress is test.tester@nasa.gov (http://www.nasa.gov)');
-```
-```sh
-{\b(\w[-.\w]*@[-a-z\d]+(\.[-a-z\d]+)*\.(com|edu|info|de|gov))\b}i
-```
-```sh
+
+/*
+$r = {\b(\w[-.\w]*@[-a-z\d]+(\.[-a-z\d]+)*\.(com|edu|info|de|gov))\b}i
+
 My email adress is <a href="mailto:test.tester@nasa.gov">test.tester@nasa.gov</a> (http://www.nasa.gov)
+*/
+
 ```
 
 More examples will follow soon.
