@@ -42,22 +42,16 @@ $m = Array
 ```php
 $r = regex([],
 	Or_(
-		'-'
-		.
-		Group(
+		'-' . Group(
 			oneOrMany(NonWhitespace()),
 			'exclude' // groupname
 		)
 	,
 		inlineOption(['mode::smallest-selection-for*and+'], 
-			'"'
-			.
-			Group(
+			'"' . Group(
 				nullOrMany(Char()), 
 				'literal' 
-			)
-			.
-			'"'
+			) . '"'
 		)
 	,
 		Group(
