@@ -89,7 +89,7 @@ function escape($c) 			{ return preg_quote($c); }
 // Positions (not 'consumptive')
 function beginsWith($c = '')		{ return '^'  . $c; }	       // '\A' hole string, use 'mode::begin-and-end-signs-matches-every-newline' for each line
 function endsWith($c = '') 		{ return $c . '$'; }	       // '\Z'
-function endsOfString($c = '') 		{ return $c . '\z'; }          // always
+function endsOfString($c = '') 	{ return $c . '\z'; }          // always
 function wordBoundry()			{ return '\b'; }    	       // \babc\b - single word
 function inWordBoundry()        	{ return '\B'; }	       // \Babc\B - whithin a word
 
