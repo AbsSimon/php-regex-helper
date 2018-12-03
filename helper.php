@@ -74,11 +74,11 @@ function minTimes($c, $x) 		{ return $c . '{' . $x . ',}'; }
 function Char()				{ return '.'; }    		// except '\n'
 function Number() 			{ return '\d'; }		// '\d'
 function NonNumber() 			{ return '\D'; }		// '^0-9'
-function Tab() 				{ return '\t'; }
+function Tab() 			{ return '\t'; }
 function Newline() 			{ return '\n'; }
 function Return_() 			{ return '\r'; }
-function StringLower() 			{ return 'a-z'; }
-function StringUpper() 			{ return 'A-Z'; }
+function StringLower() 		{ return 'a-z'; }
+function StringUpper() 		{ return 'A-Z'; }
 function WordChar()			{ return '\w'; }        	// '0-9A-Za-z_' 
 function NonWordChar()			{ return '\W'; }        	// '^0-9A-Za-z_'
 function Whitespace() 			{ return '\s'; }        	// '\r\n \t'
