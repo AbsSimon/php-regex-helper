@@ -129,7 +129,7 @@ $r = regex(['mode::case-insensitiv'],
 		escape('.')
 		.
 		Group(
-			Or_('com','edu','info','de','gov') // Domain
+			Or_('com','edu','info','de','gov')
 		)
 	)
 	.
