@@ -151,5 +151,3 @@ My email adress is <a href="mailto:test.tester@nasa.gov">test.tester@nasa.gov</a
 */
 
 ```
-
-More examples will follow soon.
