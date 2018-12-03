@@ -53,7 +53,7 @@ function inlineOption($options = [], $c)
 // Containers
 function oneOfTheseCharacters($c) 	{ return '[' . $c . ']'; }  // Char Class, no meta chars work here
 function notOneOfTheseCharacters($c) 	{ return '[^' . $c . ']'; } // means at least one char (!) that is not inside the char class
-function Group($c, $name = '') 		{ return '(' . (!empty($name) ? '?<' . $name . '>' : '') . $c . ')'; } // also with capturing
+function Group($c, $name = '') 	{ return '(' . (!empty($name) ? '?<' . $name . '>' : '') . $c . ')'; } // also with capturing
 function notCaptureGroup($c) 		{ return '(?:' . $c . ')'; }
 
 // Logical Or
