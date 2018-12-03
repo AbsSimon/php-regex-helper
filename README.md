@@ -38,7 +38,7 @@ $m = Array
 */
 ```
 
-#### Example 2. Extract search
+#### Example 2. Extract searchterms
 ```php
 $r = regex([],
 	Or_(
